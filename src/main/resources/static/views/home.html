@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Main Page</title>
+    <!-- Date-picker JavaScript File -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+</head>
+<body ng-app="demo">
+
+<div class="container" ng-controller="UserController" >
+
+<div ng-if="addNew">
+
+    <div class="form-row form-inline">
+        <div class="form-group inp-d50 inp-sm-d50" ng-if="addedUsers.length <= 0">
+            At the moment there are no users
+        </div>
+        <div class="form-group inp-d50 inp-sm-d50" ng-if="addedUsers.length > 0">
+            <div><span>{{addedUsers.length}} users found.</span></div>
+        </div>
+        <div class="form-group inp-d50 inp-sm-d50">
+            <!--<button ng-click="clickAddUserButton()" class="btn btn-sm btn-info">Add new User</button> -->
+            <a href="#/add" class="btn btn-sm btn-info">Add new User</a>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div ng-if="addedUsers.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>User pic</th>
+            </tr>
+            <tbody ng-repeat="user in addedUsers">
+            <tr >
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.date }}</td>
+                <td><img alt ng-src="{{ user.url }}" class="flag" style="width:40px;height:40px;"   /></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+<div ng-view></div>
+</body>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/angular-route.js"></script>
+<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="js/app/app.js"></script>
+<script src="js/app/UserController.js"></script>
+<script src="js/app/UserService.js"></script>
+<link rel="stylesheet" href="css/lib/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/app/app.css"/>
+<link rel="stylesheet" href="css/app/dateCtrl.css">
+
+</html>
