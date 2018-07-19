@@ -47,7 +47,6 @@ module.controller("UserController", [ "$scope", "$rootScope","$window","$locatio
         UserService.saveUser($scope.model).then(function(r) {
                 if (!r.data.error) {
                      $scope.isSuccess = r.data;
-                     $rootScope.addnewuser = false;
                      getExistingUsers();
                      $rootScope.addNew = true;
                      $window.location = '#/';
