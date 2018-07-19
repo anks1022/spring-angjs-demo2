@@ -22,6 +22,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<js-tests.skip>false</js-tests.skip>
+		<bower-components>${basedir}/src/main/resources/static/bower_components</bower-components>
 	</properties>
 
 	<dependencies>
@@ -59,12 +61,76 @@
 			<version>3.3.6</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!--<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jasmine</artifactId>
+			<version>2.0.0</version>
+			<scope>test</scope>
+		</dependency>-->
 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.klieber</groupId>
+				<artifactId>phantomjs-maven-plugin</artifactId>
+				<version>0.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<version>2.1.1</version>
+					<skip>${js-tests.skip}</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.searls</groupId>
+				<artifactId>jasmine-maven-plugin</artifactId>
+				<version>1.3.1.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skipJasmineTests>${js-tests.skip}</skipJasmineTests>
+					<webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
+					<webDriverCapabilities>
+						<capability>
+							<name>phantomjs.binary.path</name>
+							<value>${phantomjs.binary}</value>
+						</capability>
+					</webDriverCapabilities>
+					<jsSrcDir>${basedir}/src/main/resources/static/app</jsSrcDir>
+					<jsTestSrcDir>${basedir}/src/test/javascript</jsTestSrcDir>
+					<preloadSources>
+						<source>${basedir}/src/test/bower/angular/angular.js</source>
+						<source>${basedir}/src/test/bower/angular/angular-route.js</source>
+						<source>${basedir}/src/test/bower/angular-resource/angular-resource.js</source>
+						<source>${basedir}/src/test/bower/angular-mocks/angular-mocks.js</source>
+						<source>${basedir}/src/main/resources/static/js/app/app.js</source>
+						<source>${basedir}/src/main/resources/static/js/app/UserController.js</source>
+						<source>${basedir}/src/main/resources/static/js/app/UserService.js</source>
+					</preloadSources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
