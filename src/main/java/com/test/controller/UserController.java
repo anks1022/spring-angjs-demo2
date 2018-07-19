@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(value= Constants.SAVE_USER, method= RequestMethod.POST)
-	public void saveUser(@RequestBody UserDto userDto) {
+	public String saveUser(@RequestBody UserDto userDto) {
+		if(isAnyInputEmpty(userDto)) {
+			return "001";
+		}
 		userService.saveUser(userDto);
+		return "000";
+	}
+
+	private boolean isAnyInputEmpty(UserDto userDto) {
+		return StringUtils.isEmpty(userDto.getFirstName()) || StringUtils.isEmpty(userDto.getLastName())
+				|| StringUtils.isEmpty(userDto.getEmail()) || StringUtils.isEmpty(userDto.getDate());
 	}
 }

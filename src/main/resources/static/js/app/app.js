@@ -5,7 +5,7 @@ var demoApp = angular.module('demo', [  "ngRoute", 'demo.controllers','demo.serv
 
     demoApp.config(function($routeProvider,$locationProvider){
         $locationProvider.hashPrefix('');
-     $routeProvider
+        $routeProvider
                     .when('/add' , {
                         templateUrl : "/views/addUser.html",
                         controller : 'UserController'
@@ -13,7 +13,7 @@ var demoApp = angular.module('demo', [  "ngRoute", 'demo.controllers','demo.serv
                     .otherwise({
                             redirectTo: '/'
                     });
-               });
+    });
 
      demoApp.constant("CONSTANTS", {
      	getAllUsers : "/user/getAllUsers",

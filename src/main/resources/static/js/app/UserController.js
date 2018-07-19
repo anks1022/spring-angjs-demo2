@@ -10,6 +10,9 @@ module.controller("UserController", [ "$scope", "$rootScope","$window","$locatio
     $rootScope.addedUsers = [{}];
     getExistingUsers();
 
+    function sortUsers(u) {
+        return u.sort();
+    }
     function defaultDate() {
         var dfDt = new Date();
         return dfDt.getDate() + "-" + (dfDt.getMonth()+1) + "-" + dfDt.getFullYear();
@@ -43,6 +46,7 @@ module.controller("UserController", [ "$scope", "$rootScope","$window","$locatio
     $scope.saveNewUser = function() {
         UserService.saveUser($scope.model).then(function(r) {
                 if (!r.data.error) {
+                     $scope.isSuccess = r.data;
                      $rootScope.addnewuser = false;
                      getExistingUsers();
                      $rootScope.addNew = true;
