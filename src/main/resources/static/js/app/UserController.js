@@ -36,7 +36,6 @@ module.controller("UserController", [ "$scope", "$rootScope","$window","$locatio
 		        if (!r.data.error) {
                      $scope.allUsers= r.data;
                      $rootScope.addedUsers = r.data;
-                     console.log($rootScope.addedUsers);
                 } else {
                      console.log("Error while getting users");
                 }

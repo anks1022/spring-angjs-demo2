@@ -6,42 +6,30 @@
             </div>
             <div class="col-sm-9">
                 <div class="form-row form-inline">
-                    <div class="form-group inp-d50 inp-sm-d50" ng-class="{'has-error' : userAboutForm.lastName.$touched && userAboutForm.lastName.$invalid}">
+                    <div  ng-class="{'has-error' : userAboutForm.firstName.$touched && userAboutForm.firstName.$invalid}">
                         <label><span>First name</span> <span>*</span></label>
-                        <input type="text" name="firstName" ng-model="model.firstName" maxlength="50" ng-required="true">
-                        <div ng-messages="userAboutForm.firstName.$error">
-                            <span class="help-block" ng-if="userAboutForm.firstName.$touched && userAboutForm.firstName.$error.required" ng-message="required" translate>Please enter</span>
-                        </div>
+                        <input type="text" name="firstName" class="form-control" ng-model="model.firstName" maxlength="50" ng-required="true">
                     </div>
                     <div class="form-group inp-d50 inp-sm-d50" ng-class="{'has-error' : userAboutForm.lastName.$touched && userAboutForm.lastName.$invalid}">
                         <label><span>Last Name</span> <span>*</span></label>
-                        <input name="lastName" type="text" ng-model="model.lastName" ng-required="true" maxlength="50">
-                        <div ng-messages="userAboutForm.lastName.$error">
-                            <span class="help-block" ng-if="userAboutForm.lastName.$touched && userAboutForm.lastName.$error.required" ng-message="required" translate>Please enter</span>
-                        </div>
+                        <input name="lastName" type="text" class="form-control" ng-model="model.lastName" ng-required="true" maxlength="50">
                     </div>
                 </div>
                 <div class="form-row form-inline">
-                    <div class="form-group inp-d100" ng-class="{'has-error' : userAboutForm.email.$touched && userAboutForm.email.$invalid}">
-                        <label><span>Email    </span> <span>*</span></label>
-                        <input name="email" ng-model="model.email" type="text"  ng-required="true" maxlength="50">
-                        <div ng-messages="userAboutForm.email.$error">
-                            <span class="help-block" ng-if="userAboutForm.email.$touched && userAboutForm.email.$error.required" ng-message="required" translate>Please enter valid email</span>
-                        </div>
+                    <div  ng-class="{'has-error' : userAboutForm.email.$touched && userAboutForm.email.$invalid}">
+                        <label width="100"><span>Email    </span> <span>*</span></label>
+                        <input name="email" class="form-control" ng-model="model.email" type="email"  ng-required="true" maxlength="50">
                     </div>
-                    <div class="form-group inp-d100" ng-class="{'has-error' : userAboutForm.date.$touched && userAboutForm.email.$invalid}">
+                    <div ng-class="{'has-error' : userAboutForm.date.$touched && userAboutForm.date.$invalid}">
                         <label><span>Date    </span> <span>*</span></label>
-                        <input id="date" name="date" type="text" datepicker ng-model="model.date" placeholder="Enter Date ..." ng-required="true" maxlength="50"/>
-                        <div ng-messages="userAboutForm.date.$error">
-                            <span class="help-block" ng-if="userAboutForm.date.$touched && userAboutForm.date.$error.required" ng-message="required" translate>Please enter</span>
-                        </div>
+                        <input id="date"  class="form-control" name="date" type="text" datepicker ng-model="model.date" placeholder="Enter Date ..." ng-required="true" maxlength="50"/>
                     </div>
 
                 </div>
                 <div class="form-row form-inline">
                     <div class="form-group inp-d100">
                         <label><span translate>URL</span></label>
-                        <input name="url" type="text" ng-model="model.url" mask-validate="false" maxlength="200">
+                        <input name="url" class="form-control" type="text" ng-model="model.url" mask-validate="false" maxlength="200">
                     </div>
                 </div>
 

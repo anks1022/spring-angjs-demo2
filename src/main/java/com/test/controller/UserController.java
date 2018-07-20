@@ -2,6 +2,7 @@ package com.test.controller;
 
 import java.util.List;
 
+import com.test.dto.AddUserResponse;
 import com.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -28,12 +29,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value= Constants.SAVE_USER, method= RequestMethod.POST)
-	public String saveUser(@RequestBody UserDto userDto) {
+	public AddUserResponse saveUser(@RequestBody UserDto userDto) {
 		if(isAnyInputEmpty(userDto)) {
-			return "001";
+			return new AddUserResponse("001");
 		}
 		userService.saveUser(userDto);
-		return "000";
+		return new AddUserResponse("000");
 	}
 
 	private boolean isAnyInputEmpty(UserDto userDto) {

@@ -2,6 +2,7 @@ package com.test;
 
 import com.test.controller.HomeController;
 import com.test.controller.UserController;
+import com.test.dto.AddUserResponse;
 import com.test.dto.UserDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,15 +32,15 @@ public class AppTest {
 	@Test
 	public void saveUserFailure() throws Exception {
 		UserDto ud = new UserDto("fn", "ln", "em", null, null);
-		String isSuccess = userController.saveUser(ud);
-		assert(isSuccess).equals("001");
+		AddUserResponse resp = userController.saveUser(ud);
+		assert(resp.getReasonCode()).equals("001");
 	}
 
 	@Test
 	public void saveUserSuccess() throws Exception {
 		UserDto ud = new UserDto("fn", "ln", "em", "12-12-2017", null);
-		String isSuccess = userController.saveUser(ud);
-		assert(isSuccess).equals("000");
+		AddUserResponse resp = userController.saveUser(ud);
+		assert(resp.getReasonCode()).equals("000");
 	}
 
 	@Test
